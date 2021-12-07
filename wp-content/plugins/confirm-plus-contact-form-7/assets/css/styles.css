@@ -1,0 +1,40 @@
+.wpcf7cp-force-hide {
+    display: none !important;
+}
+
+.wpcf7cp-form-hide {
+    visibility: hidden !important;
+}
+
+div.wpcf7 {
+	position: relative;
+	height: auto;
+}
+
+div#wpcf7cpcnf {
+	position: absolute;
+	z-index: 1000;
+	background-color: transparent;
+	width: 100%;
+	height: auto;
+	top: 0;
+	left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+div.wpcf7cp-btns {
+    margin-top: 2em;
+}
+
+button.wpcf7cp-cfm-edit-btn {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+button.wpcf7cp-cfm-submit-btn {
+    margin-bottom: 20px;
+}
+

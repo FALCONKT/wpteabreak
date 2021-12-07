@@ -1,0 +1,64 @@
+# Translation of Plugins - Confirm Plus Contact Form 7 - Development (trunk) in Japanese
+# This file is distributed under the same license as the Plugins - Confirm Plus Contact Form 7 - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-10-20 00:38:35+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Plugins - Confirm Plus Contact Form 7 - Development (trunk)\n"
+
+#: include/contact-form-7-cfm-pls-class.php:88
+msgid "send mail"
+msgstr "この内容で送信"
+
+#: include/contact-form-7-cfm-pls-class.php:89
+msgid "checked"
+msgstr "チェックあり"
+
+#: include/contact-form-7-cfm-pls-class.php:87
+msgid "edit"
+msgstr "修正"
+
+#: include/contact-form-7-cfm-pls-class.php:85
+#: include/contact-form-7-cfm-pls-class.php:86
+msgid "confirm"
+msgstr "確認"
+
+#: include/contact-form-7-cfm-pls-class.php:45
+#: include/contact-form-7-cfm-pls-class.php:70
+msgid "Internet Explorer is not supported"
+msgstr "Internet Explorer はサポート対象外です"
+
+#: include/contact-form-7-cfm-pls-class.php:38
+#: include/contact-form-7-cfm-pls-class.php:63
+msgid "Contact Form 7 must be version 5.4.2 or later"
+msgstr "Contact Form 7 はバージョン5.4.2以降である必要があります"
+
+#: include/contact-form-7-cfm-pls-class.php:32
+#: include/contact-form-7-cfm-pls-class.php:57
+msgid "Contact Form 7 must be installed and activated"
+msgstr "Contact Form 7 のインストールおよび有効化が必要です"
+
+#. Author URI of the plugin
+msgid "https://trustring.jp/"
+msgstr "https://trustring.jp/"
+
+#. Author of the plugin
+msgid "Trustring"
+msgstr "トラストリング"
+
+#. Description of the plugin
+msgid "Add a confirmation function to Contact Form 7"
+msgstr "Contact Form 7に確認画面の表示機能を追加"
+
+#. Plugin URI of the plugin
+msgid "https://wcpn.jp/"
+msgstr "https://wcpn.jp/"
+
+#. Plugin Name of the plugin
+msgid "Confirm Plus Contact Form 7"
+msgstr "Confirm Plus Contact Form 7"

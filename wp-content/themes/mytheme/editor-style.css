@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+/* https://type-scale.com/ 経由　1.25倍ごと 16pxを1em扱いする*/
+/* 変数 */ 
+:root{
+
+    /* 文字の大きさの変数総合指定 */
+    --f1: 2.44em;
+    --f2: 1.95em;
+    --f3: 1.56em;
+    --f4: 1.25em;
+    --f5: 1em;
+    --f6: 0.8em;
+
+    /* 色の変数 */
+    --basecolor: #63a211;
+
+}
+
+
+body{
+    font-family:sans-serif;
+}
+
+
+
+p{
+    line-height:1.8;
+    font-size: var(--f5);
+}
+
+
+/* h系列は全部変数指定似て総合的に扱う */
+h1{
+    font-size: var(--f1);    
+}
+h2{
+    font-size: var(--f2);    
+}
+h3{
+    font-size: var(--f3);    
+}
+h4{
+    font-size: var(--f4);    
+}
+h5{
+    font-size: var(--f5);    
+}
+h6{
+    font-size: var(--f6);    
+}
+
+/* h2 を上書き */
+h2{
+    border-left: solid 14px var(--basecolor);
+    padding-left: 14px;
+}
+
+
+/* Editorの設定も見た目重視して変える */
+.wp-block{
+    max-width: calc(720px + 30px);
+    /* calc は計算関数で独自指定するような形 */
+}
+
+
+/* ！！！！！！！！！！！！！！！！！！！ */
+/* Editorの設定も見た目重視して変える 全幅時　幅広時　にも画面一杯になるようにする*/
+/* [data-align="full"] と [data-align="wide"] の時には指定しないという指定 */
+/* 2回目　　✖ */
+/* .editor-styles-wrapper .wp-block:not([data-align="full"]):not([data-align="wide"]) {
+    max-width: calc( 720px + 30px );
+} */
+
+/* 1回目　✖ */
+/* .wp-block:not([data-align="full"]):not([data-align="wide"]) {
+	max-width: calc( 720px + 30px );
+} */
+/* not疑似要素が効かない ため　逆思想で　上書き*/
+
+/* ！！！！！！！！！！！！！！！！！！！ */
+/* notの疑似要素が効かないので、直接指定した より詳細度を上げるためdivを追加　full*/
+
+/* 全幅　完全左右広がり設定時 上書き*/
+div.wp-block[data-align="full"]{
+    max-width: none;
+}
+
+/* 幅広　完全左右広がり設定時 上書き*/
+div.wp-block[data-align="wide"]{
+    max-width: 1100px;
+}
+/* 幅広　→　Editor上の見た目　左右15pxの余白を　既に設定されている720px　に左右15pxづつ加算し、単にEritor上の見た目上左右幅を持たせている。　上書き　で変更　div も付ける*/
+div.wp-block[data-align="wide"]{
+    max-width: calc( 1020px + 30px );
+}

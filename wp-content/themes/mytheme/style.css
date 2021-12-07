@@ -1,0 +1,724 @@
+@charset "utf-8";
+/*
+Theme Name: MY THEME
+Author: KT
+Desctiption: OriginalThemaです
+Version：1.0
+*/
+
+/*親要素に　文字などが回り込まないように廻り込み解除 */
+
+/* 飽くまでTEST */
+/* .wp-block-image p{
+    width: 500px;
+    overflow: hidden;
+} */
+
+.alignright{
+    float: right;
+    margin-left: 1em;
+    margin-right: 0;
+}
+
+.alignleft{
+    float: left;
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+.aligncenter{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Visuet要素はGutenbergのCSSが効かないため　Theme側で全指定 */
+.wp-block-categories-list.aligncenter,
+.wp-block-archives.aligncenter,
+.wp-block-tag-cloud.aligncenter,
+.wp-block-latest-comments.aligncenter,
+.wp-block-res.aligncenter{
+    text-align: center;
+}
+
+/* 動画の左右幅を形式的に0にしている */
+figure{
+    margin-left:0;
+    margin-right:0;
+}
+
+
+body{
+    box-sizing: border-box;
+}
+
+body *,
+body *::before,
+body *::after{
+    box-sizing: inherit;
+    /* inherit は　形象の意味 */
+}
+
+
+
+
+/* https://type-scale.com/ 経由　1.25倍ごと 16pxを1em扱いする*/
+/* 変数 */ 
+:root{
+
+    /* 文字の大きさの変数総合指定 */
+    --f1: 2.44em;
+    --f2: 1.95em;
+    --f3: 1.56em;
+    --f4: 1.25em;
+    --f5: 1em;
+    --f6: 0.8em;
+
+    /* 色の変数 */
+    --basecolor: #63a211;
+
+    /* Gradationも変数化 */
+    --gradient:linear-gradient( 89.2deg,  rgba(34,126,34,1) 0.9%, rgba(99,162,17,1) 99.8% );
+
+    /* Fontも変数化 */
+    /* 固有のFontは''で囲う */
+    /* --myfont:'Josefin　Sans',sans-serif; */
+
+    --myfont:'Noto Sans JP',sans-serif;
+
+
+    /* 横幅740px以上の場合の指定　定数化 */
+    --myw : 720px;
+}
+
+
+body{
+    font-family:sans-serif;
+}
+
+
+
+p{
+    line-height:1.8;
+    font-size: var(--f5);
+}
+
+
+/* h系列は全部変数指定似て総合的に扱う */
+h1{
+    font-size: var(--f1);
+}
+h2{
+    font-size: var(--f2);    
+}
+h3{
+    font-size: var(--f3);    
+}
+h4{
+    font-size: var(--f4);    
+}
+h5{
+    font-size: var(--f5);    
+}
+h6{
+    font-size: var(--f6);    
+}
+
+/* h2 を上書き */
+h2{
+    border-left: solid 14px var(--basecolor);
+    padding-left: 14px;
+}
+
+/* bodyの左右幅が解消される */
+body{
+    margin: 0;
+}
+
+/* WP　のEditor　で　全幅の指定の場合・・・ */
+/* 全広　の際に　画像に発生するClass 　alignfull*/
+/* .mycontainer は親要素を指定して　子要素の画像が　全幅　幅広　にWP管理画面上で設定した場合　その親要素の中でのみの扱いにし、極度に大きくならないように設定している */
+.mycontainer > .alignfull{
+    margin-left: -10px;
+    margin-right: -10px;
+    max-width: none;
+    width: auto;
+}
+
+
+/* WPのEditor　で　幅広の指定の場合・・・*/
+/* 全広　の際に　画像に発生するClass 　alignwide*/
+/* 小さい画面では標準　大きい画面では標準幅=中央の幅のこと　をはみ出した=150pxで指定する*/
+/* BreakPoint　3段階　初期値SP740pxまで→余白無し(これは事前指定　ここ)　中央1320pxまで→余白の半分(@media)　PC最大→画像は御台150pxで固定　の3段階(@media) */
+
+/* →　→　alignwide　は何も指定しないので　何も指定しない　→　画面幅100%で　設定される 　設定は　@miediaだけで設定している　*/
+
+
+
+
+
+/* index.phpで設定したClassに余白0を付ける  bodyではなく　余白　として左右の開きを作成する*/
+.mycontainer{
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+/* 最小幅740px～はという意味 幅が大きくなると左右に余白を付けるという意味　TabletからＰＣまで*/
+@media (min-width: 740px){
+    /* @media()の引数には　変数が使用出来ないため　　変数は使用出来ない */
+    .mycontainer{
+        /* 横幅を変数指定 var(--myw)　が　720px　*/
+
+        /* <figure> がScrallBarを飛び越え　る　例 */
+        /* max-width: は最大幅を固定するもの　<body>を基準に →　そのため画像がScrallBarを飛び越える*/
+        /* max-width:var(--myw); 
+        margin-left: auto;
+        margin-right: auto; */
+
+        /* <figure> がScrallBarを飛び越えて　ない　例 */
+        /* max-width: は最大幅を全く固定しない　<body>を基準にしない →　そのため画像がScrallBarを飛び越えない*/
+        /* 左右の余白だけ　固定する */
+        max-width:none; 
+        margin-left: calc( (100vw - var(--myw) ) / 2 );
+        margin-right: calc( (100vw - var(--myw) ) / 2 );
+
+    }
+
+    /* WP　のEditor　で　全幅の指定の場合・・・ */
+    /* 全宏　の際に　画像に発生するClass　alignfull */
+    /* 画像は左右に　負の値！！！！　を利用して　引き延ばす　正の数の場合、親要素の内側に余白が出来るのでその逆をする形 */
+    /* .mycontainer は親要素を指定して　子要素の画像が　全幅　幅広　にWP管理画面上で設定した場合　その親要素の中でのみの扱いにし、極度に大きくならないように設定している */
+    .mycontainer > .alignfull {
+
+        /* 横幅を変数指定 */
+        margin-left:
+        calc(( 100vw - var(--myw))/2*-1 );
+
+        /* 横幅を変数指定 */
+        margin-right:
+        calc(( 100vw - var(--myw))/2*-1 );
+    }
+
+    /* WP　のEditor　で　幅広の指定の場合・・・ */
+    /* 全広　の際に　画像に発生するClass 　alignwide*/
+    /* BreakPoint　3段階　初期値SP740pxまで→余白無し(これは事前指定　別)　中央1320pxまで→余白の半分(ここ)　PC最大→画像は御台150pxで固定(もう一つの@media)　の3段階 */
+    /* 画像は左右に　負の値！！！！！　を利用して　引き延ばす　正の数の場合、親要素の内側に余白が出来るのでその逆をする形 */
+
+    /* .mycontainer は親要素を指定して　子要素の画像が　全幅　幅広　にWP管理画面上で設定した場合　その親要素の中でのみの扱いにし、極度に大きくならないように設定している */
+    .mycontainer > .alignwide{
+        margin-left: calc( (100vw - var(--myw)) / 4 * -1 );
+        margin-right: calc( (100vw - var(--myw)) / 4 * -1 );
+        /* 最大幅は指定しない */
+        max-width: none;
+        width: auto;
+    }
+}
+
+
+
+@media (min-width:1320px){
+    /* WP　のEditor　で　幅広の指定の場合・・・ */
+    /* 全広　の際に　画像に発生するClass 　alignwide*/
+    /* BreakPoint　3段階　初期値SP740pxまで→余白無し(これは事前指定　別)　中央1320pxまで→余白の半分(もう一つの@media)　PC最大→画像は御台150pxで固定(ここ)　の3段階 */
+    /* 画像は左右に　負の値！！！！！　を利用して　引き延ばす　正の数の場合、親要素の内側に余白が出来るのでその逆をする形 ここ　では150px余白固定*/
+    
+    /* .mycontainer は親要素を指定して　子要素の画像が　全幅　幅広　にWP管理画面上で設定した場合　その親要素の中でのみの扱いにし、極度に大きくならないように設定している */
+    .mycontainer > .alignwide{
+        margin-left: -150px;
+        margin-right: -150px;
+    }
+}
+
+
+
+
+/* 記事Titleと投稿日の装飾 */
+.myposthead{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* home.php作成時　新規で追加した見出しの装飾 */
+.myposthead p{
+    /* 文字の色とFonto名は変数利用 */
+    color:var(--basecolor);
+    font-family:var(--myfont);
+    font-weight: bold;
+}
+
+
+
+
+
+/* Category Link　の装飾 inheritは親要素を形象する意味　*/
+a{
+    color:inherit;
+    text-decoration: none;
+}
+/* Carsol乗った時 */
+a:hover{
+    opacity: 0.7;
+}
+
+/* Categoryを横並びにする指定 flex-boxを使用する　・を消す　　SelectorはF12検証で持ってくる*/
+.post-categories{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style-type: none;
+}
+/* Category　最後の要素　以外　の意味 */
+.post-categories li:not(:last-child){
+    margin-right: 10px;
+}
+/* Category　のLinkButtonの装飾 */
+/* currentColor は最近の色　=　a の色ということ */
+.post-categories a{
+    padding: 3px 10px;
+    border: solid 1px currentColor;
+    border-radius: 10px;
+    /* 文字　色と大きさは　変数指定 */
+    color: var(--basecolor);
+    font-size: var(--f6);
+}
+
+
+
+.nav-links{
+    display: flex;
+    margin: 30px 0;
+    /* 文字の大きさは　変数にて指定 */
+    font-size: var(--f6);
+}
+
+/* 前の記事　左側 */
+.nav-previous{
+    flex:1;
+
+    /* この範囲内で横並びになるようにするため */
+    display: flex;
+    align-items: center;
+}
+
+/* 次の記事 右側*/
+.nav-next{
+    flex:1;
+    margin-left: 10px;
+    text-align: right;
+
+    /* この範囲内で横並びになるようにするため */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
+
+
+/* Icon2種追以下 */
+/* 左側 に 追加的に */
+.nav-previous:before{
+    content: "\f141";
+}
+/* 右側 に 追加的に */
+.nav-next:after{
+    content: "\f139";
+}
+/* 何を使うか →　Dashicons*/
+.nav-previous:before,.nav-next:after{
+    font-family: "dashicons";
+    color:var(--basecolor);
+    font-size:var(--f2);
+    line-height: 1;
+}
+
+
+
+/* 自己設定！！！！ */
+/* 投稿記事の画像の縦横比を固定するように調整　 */
+.wp-block-image img{
+    width: 100%;
+    height: auto;
+}
+
+main.mycontainer figure img{
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* Header */
+/* .myhead には　WP　Editor上の　alignwide を設定したため　子要素が崩れる　そのため　子要素にdiv を設定している */
+.myhead > div {    
+    display: flex;
+    /*左右　両端寄せ */
+    justify-content: space-between;
+    /* 上下　中央 */
+    align-items: center;
+    padding: 20px 0;
+
+    /* 文字色 */
+    color:#444444;
+}
+
+.myhead a{
+    /* 文字の大きさは変数で指定 */
+    font-size:var(--f3);
+
+    /* Fontは変数で指定 */
+    font-family: var(--myfont);
+}
+
+.myhead p{
+    font-size: var(--f6);
+}
+
+/* Footer の装飾*/
+.myfoot{
+    padding: 16px;
+    background-color: var(--basecolor);
+    background-image:var(--gradient);
+    color:#ffffff;
+    text-align: center;
+
+    /* Fontは変数で指定 */
+    font-family: var(--myfont);
+}
+
+/* 記事一覧を2列にする */
+.mypostlist{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.mypostlist article{
+    width: 48%;
+    margin-bottom: 20px;
+}
+/* 記事一覧の装飾　画像と文字 */
+.mypostlist figure{
+    margin: 0;
+}
+/* !!!!!!!!!!!!!!!!! */
+/* CSS詳細度　かなり上げている */
+main.mycontainer div.mypostlist figure img{
+/* div.mypostlist figure　img{ */
+    height: 180px;
+    /* 前指定の高さで切り出し */
+    object-fit:cover;
+}
+
+
+/* !!!!!!!!!!!!!!!!! */
+/* CSS詳細度　かなり上げている */
+/* 関連記事　CSSがずれたため　追加修正 */
+article div.mypostlist figure.relatefigure img{
+    width: 100%;
+    height: 180px;
+    /* 前指定の高さで切り出し */
+    object-fit:cover;
+}
+
+
+/* singel.php 設定時　h3　を追加 　→　文字は小さくなる*/
+.mypostlist h2,
+.mypostlist h3{
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: var(--f6);
+}   
+
+/* 関連記事 */
+/* 外枠 */
+.myrelated{
+    border: solid 2px var(--basecolor);
+    padding: 0 10px;
+}
+
+/* 既に　h2　は前で設定している　その上書き */
+.myrelated h2{
+    border-width:5px;
+    color:var(--basecolor);
+    font-family: var(--myfont);
+    font-size:var(--f5);
+}
+
+/* !!!!!!!!!!!!!!!!! */
+/* CSS詳細度　かなり上げている */
+/* 関連記事　CSSがずれたため　追加修正 */
+/*元 .myrelated img{} */
+article div.mypostlist figure.relatefigure img{
+    height: 120px;
+}
+
+/* 最小幅240px以上の場合・・・ */
+@media (min-width:740px){
+    .myrelated article{
+        width: 24%;
+    }
+    .myrelated .mypostlist{
+        justify-content: flex-start;
+    }
+    .myrelated article:not(:last-child){
+        margin-right: calc(4%/3);
+        /* 何時も　計算しているCSS　常に　残った　4%分の余白の　3分の1であることを示している */
+    }
+}
+
+
+
+
+
+
+
+
+/* PageNAtionのClass 検証画面から複製 2Class取ってきた*/
+.pagination .nav-links{
+    margin-bottom: 50px;
+    justify-content: center;
+}
+.pagination .page-numbers:not(:last-child){
+    margin-right: 15px;;
+}
+.pagination a{
+    color:var(--basecolor)
+}
+/* current = 最新の番号のこと */
+.pagination .current{
+    color:#aaaaaa;
+}
+
+/* 独自Menuｍに関しての指定　上余白　上下の肉余白 */
+.mymenu{
+    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    background-color: #fbf6e8;
+}
+
+/* 独自Menuｍに関しての指定　見出し */
+.mymenu h2{
+    padding: 10px;
+    border: none;
+    background-color: var(--basecolor);
+    color:#ffffff;
+    font-family: var(--myfont);
+    font-size:var(--f5); 
+}
+
+/* 独自Menuｍに関しての指定　自己紹介*/
+.myprofile figure{
+    text-align: center;
+}
+.myprofile img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.myprofile strong{
+    /* <strong> はInline要素のため一回display-blockをする必要がある */
+    display: block;
+    text-align: center;
+    font-family: var(--myfont);
+}
+.myprofile p{
+    font-size: var(--f6);
+}
+
+/* 独自Menuｍに関しての指定　Widget  PHPのみで指定しているため、PHPで吐き出された先のClass名を利用*/
+section.widget ul{
+    padding: 0;
+    list-style-type: none;
+    font-size: var(--f6);
+}
+/* li要素の最後でない場合 */
+section.widget li:not(:last-child){
+    margin-bottom: 5px;
+}
+
+/* DropDown select要素 */
+section.widget select{
+    width: 100%;
+    height: 40px;
+    border:solid 1px #aaaaaa ;
+}
+
+/* 最小幅740px以上のとき　はColumn化 */
+@media (min-width: 740px){
+    .mymenu-columns{
+        columns:3;
+        column-gap:30px;
+    }
+    .mymenu-columns > section{
+        position: relative;
+
+        /* 回り込まないようにする指定 */
+        overflow: hidden;
+        /* 子要素内に他のSection内の改行を避ける */
+        break-inside: avoid;
+    }
+}
+
+
+/* 固定Page用　Mediaと記事=Text用 */
+.mymargin{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+
+
+
+/* Categryの前に付すIcon 　Dashiconsを用いる */
+.post-categories:before{
+    content: "\f318";;
+    font-family:'dashicons';
+    color:var(--basecolor);
+    font-size:var(--f2);
+    line-height: 1;
+    margin-right: 5px;
+}
+
+/* Contactform7 独自PageからCSSを持ってきて設定*/
+/* article.post-11.page.type-page.status-publish.hentry{
+}
+.wpcf7-not-valid-tip {
+}
+span.wpcf7-form-control-wrap{
+}
+.wpcf7 input{
+}
+/* 未使用 */
+
+.wpcf7-text,
+.wpcf7-textarea{
+    width: 100%;
+    padding: 10px;
+    border: solid 1px #dddddd;
+}
+.wpcf7-submit{
+    width: 250px;
+    padding: 10px;
+    border: none;
+    background-color: #ffaa00;
+    -webkit-appearance: none;
+}
+
+/* 新規設置した　Navigation 用　WP経由で設置している*/
+
+.mynav{
+    /* 上下あり　左右は0 */
+    padding: 7px 0;
+    background-image: var(--gradient);
+    color:#ffffff;
+    font-size:var(--f6);
+}
+
+.mynav ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* liの中の最後の要素でなければ・・ */
+.mynav li:not(:last-child){
+    margin-right: 1em;
+}
+
+
+/* SNS　Button　の見た目 */
+/* Buttoの色は　各種SNSの既定の内容を指定 */
+.myshare .mytwitter{
+    color:#1da1f2;
+}
+.myshare .myfacebook{
+    color:#3b5998;
+}
+.myshare a{
+    width: 49%;
+    padding: 10px;
+    border: solid 1px currentColor;
+    line-height: 1;
+    text-align: center;
+}
+
+
+.myshare{
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.myshare h2{
+    padding: 0;
+    border: none;
+    color:var(--basecolor);
+    font-family: var(--myfont);
+    font-size:var(--f5);
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* 2列組み用　最終版設定 */
+/* 画面幅が最小幅1320px以上の場合 */
+@media (min-width:1320px){
+
+    .mycols .mycontainer,
+    .mycols .alignwide,
+    .mycols .alignfull{
+        width: auto;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+    } 
+    .mycols .mymenu-columns{
+        columns: 1;
+    }
+    /* 最外の親要素 */
+    .mycols{
+        display:flex;
+        /* 親要素の上の余白　と　左右の余白　左右の余白は常に計算されている */
+        margin: 50px calc( ( 100vw - 1020px ) /2 );
+        justify-content: space-between;
+    }
+
+    /* 主内容 */
+    .mycols .mycontent{
+        width:68%;
+    }
+    /* SideのMenu一覧 */
+    .mycols .mymenu{
+        width: 26%;
+        margin-top: 0;
+        padding: 10px;
+    }
+
+
+}
+/* @media (min-width:1320px)　END */
+
+
+
+/*3列 ColumnBlockのResponsive 1Column →　3Column のみに*/
+/* myrespoは高度な設定で設定したClass */
+@media (min-width:600px) and (max-width:781px){
+
+    .myrespo{
+        /* 折り返さない */
+        flex-wrap: nowrap;
+    }
+    /* 最初の要素以外は・・・ */
+    .myrespo > *:not(:first-child){
+        margin-left: 10px;
+    }
+
+}
+
+
+
+
